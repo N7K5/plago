@@ -7,7 +7,10 @@
 
     /* width: 50%; */
     /* border: 3px solid green; */
+}
 
+body {
+    background-color: rgb(221, 221, 221);
 }
 
 h5 {
@@ -40,6 +43,7 @@ input[type=range] {
     border: 3px solid #000;
     border-radius: 10px;
     font-size: 120%;
+    background-color: rgb(242, 242, 242);
 }
 
 #op_textarea {
@@ -49,6 +53,7 @@ input[type=range] {
     border: 3px solid #000;
     border-radius: 10px;
     font-size: 120%;
+    background-color: rgb(228, 231, 230);
 
 }
 
@@ -179,4 +184,38 @@ button:active {
 
 #slider_value {
     font-weight: bolder;
+}
+
+
+
+
+
+
+@font-face {
+    font-family: font_me;
+    src: url(./4.ttf );
+}
+
+
+
+#john_bg {
+    width: 500px;
+    height: 500px;
+    background-color: #9e034b;
+    position: fixed;
+    bottom: -340px;
+    right: -340px;
+    opacity: .7;
+    transform: rotate(45deg)
+}
+
+#john_mn {
+    color: #fff;
+    font-size: 54px;
+    position: fixed;
+    bottom: 20px;
+    right: 0px;
+    opacity: 1;
+    transform: rotate(-45deg);
+    font-family: font_me;
 }
