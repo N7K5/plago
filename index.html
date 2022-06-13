@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <head>
+        <title>Plago</title>
+    </head>
+    <link rel="stylesheet" href="styles.css">
+<body>
+
+    <h2>
+        Plagooooooooo!!
+    </h2>
+    <h5>
+        A plagiarism remover.
+    </h5>
+    <div id="title_sep"></div>
+
+    <span class="gen_text"> Percentage of words to change: </span>
+    <input type="range" min="1" max="100" value="80" class="slider" id="percent_slider">
+    <span id="slider_value">50</span>
+
+    <textarea id="ip_textarea" placeholder="Input text" rows="5"></textarea>
+
+    <div id="btns">
+
+        <button id="change_text"> Apply magic </button>
+        <button id="clear_text"> Clear </button>
+        <button id="paste_ip"> Paste input </button>
+        <button id="copy_op"> Copy output </button>
+
+    </div>
+
+    <textarea id="op_textarea" placeholder="Magic text will apear here" rows="5" disabled="disabled"></textarea>
+
+
+    <div id="no_worry">
+        Don't worry. Even if the output looks exactly same as input, they are different... Check on some plag-checker.
+    </div>
+
+</body>
+<script type="text/javascript" src="main.js"></script>
+</html>
