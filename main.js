@@ -27,27 +27,104 @@ let to_be_changed= {
 */
 
 
-let to_be_changed= {
+let to_be_changed_available= {
     "a": "\u0430",
     "c": "\u0441",
-    // "d": "\u0501",
+    "d": "\u0501",
     "e": "\u0435",
-    // "g": "\u0121",
-    // "h": "\u04bb",
+    "g": "\u0121",
+    "h": "\u04bb",
     "i": "\u0456",
     "j": "\u0458",
-    // "k": "\u03ba",
-    // "l": "\u04cf",
+    "k": "\u03ba",
+    "l": "\u04cf",
     "n": "\u0578",
     "o": "\u043e",
     "p": "\u0440",
     "q": "\u0566",
-    // "s": "\u0282",
-    // "u": "\u03c5",
-    // "v": "\u03bd",
+    "s": "\u0282",
+    "u": "\u03c5",
+    "v": "\u03bd",
     "x": "\u0445",
     "y": "\u0443",
     "z": "\u0290",
+};
+
+let to_be_changed= {};
+
+
+let enabled_chars= ['a', 'c', 'e', 'i', 'j', 'o', 'p', 'x', 'y']
+
+
+
+function fill_to_be_changed(enabled_chars_) {
+    to_be_changed= {};
+    let keys= Object.keys(to_be_changed_available);
+    for(let i=0; i<keys.length; i++) {
+        let c= keys[i];
+        if(enabled_chars_.includes(c)) {
+            to_be_changed[c]= to_be_changed_available[c];
+        }
+    }
+}
+
+
+
+function choosen_chars_changed(e) {
+
+    if(e.target.checked) {
+        enabled_chars.push(e.target.id)
+    }
+    else {
+        enabled_chars = enabled_chars.filter(function(item) {
+            return item != e.target.id;
+        })
+    }
+
+    enabled_chars = enabled_chars.filter((value, index, self) => {
+        return self.indexOf(value) === index;
+    });
+    
+    fill_to_be_changed(enabled_chars);
+}
+
+
+function make_char_chooser_options() {
+    let cont= document.getElementById("choosen_chars");
+
+    let keys= Object.keys(to_be_changed_available);
+
+    let enabled_keys= Object.keys(to_be_changed);
+
+    for(let i=0; i<keys.length; i++) {
+        let k= keys[i];
+
+        let tx= document.createElement("div");
+        tx.setAttribute("class", "single_check_and_char");
+        cont.appendChild(tx);
+
+
+        let x = document.createElement("INPUT");
+        x.setAttribute("type", "checkbox");
+        x.setAttribute("class", "char_chose_check");
+        x.setAttribute("id", k);
+        x.checked= false;
+        if(enabled_keys.includes(k)) {
+            x.checked= true;
+        }
+        x.addEventListener("click", choosen_chars_changed, false);
+        tx.appendChild(x);
+
+        let y = document.createElement('span');
+        y.setAttribute("class", "char_chose_chars");
+        y.innerText= k + " => ";
+        y.innerText+= to_be_changed_available[k];
+        tx.appendChild(y);
+
+        // cont.appendChild(document.createElement('br'));
+
+    }
+
 }
 
 
@@ -102,6 +179,40 @@ function init() {
         navigator.clipboard.writeText(op_e.value);
         // alert("Copied to clipboard");
     })
+
+
+
+    let settings= document.getElementById("chars_holder_x");
+
+    settings.innerText= "S";
+    settings.className="settings_open";
+
+    settings.addEventListener("click", () => {
+        let e= document.getElementById("chars_holder");
+        if(e.style.right == "-5px") {
+            e.style.right= "-40%";
+        }
+        else {
+            e.style.right= "-5px";
+        }
+
+
+        if(settings.innerText=="S") {
+            settings.innerText= "X";
+            settings.className="settings_close";
+        }
+        else {
+            settings.innerText= "S";
+            settings.className="settings_open";
+        }
+    })
+
+
+
+    fill_to_be_changed(enabled_chars);
+    make_char_chooser_options();
+
+
 
 
     ip_e.select();
